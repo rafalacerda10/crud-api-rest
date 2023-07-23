@@ -1,13 +1,11 @@
 const http = require('http');
+const port = 3000;
 
-const port = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Tudo certo !');
+});
 
-//  criação da porta e require e instalção do express
-
-const server = http.createServer();
-// criação e instaciamento do server 
-
-server.listen(port)
-// leitura porta
-
-localhost:3000;
+server.listen(port, () => {
+  console.log('Servidor rodando na porta '+ port);
+});
