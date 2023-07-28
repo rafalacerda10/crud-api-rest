@@ -1,6 +1,6 @@
 import mongoose from "mongoose"//mongoose
 
-mongoose.connect("mongodb+srv://rlacerdafermino:123@cluster0.d05ya0h.mongodb.net/");
+mongoose.connect("mongodb+srv://rlacerdafermino:123@cluster0.d05ya0h.mongodb.net/Category");
 //conezão com o atlas //
 
 let db = mongoose.connection;
