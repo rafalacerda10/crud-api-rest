@@ -1,11 +1,16 @@
 import mongoose from "mongoose";
 
-const categorySchema = new mongoose.Schema(
+const categorySchema = new mongoose.Schema
+(
+   // name :type 
    {
-   id:{type:String},
    name: {type:String, required:true},
    },
 
+   // para não aparecer a verificão de versão com o mogoose
+   {
+   versionKey:false,
+   }
 );
 const category = mongoose.model('category', categorySchema);
 
