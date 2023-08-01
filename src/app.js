@@ -22,12 +22,12 @@ app.use(express.json());
 
 // Get para verificar o db
 
-app.get('/', (req, res) => 
-{
-    category.find((err, category) =>
-  {
-        res.status(200).json(category);
-  })  
+app.get('/', (req, res) =>{
+      category.find((err, category) =>
+      {
+      res.status(200).json(category);
+      }
+      )  
 })
 
 
@@ -35,11 +35,45 @@ app.get('/', (req, res) =>
 
 app.post('/', (req, res) =>
 {
-     category.create(req.body, (err, category) => 
-  {
-        res.status(201).json(category);
-  })
+category.create(req.body, (err, category) => {
+      res.status(201).json(category);
+      })
 });
+
+
+// app.put para modificar os contatos
+
+app.put('/:id', (req, res) =>
+{
+  const id = req.params.id;
+  category.findByIdAndUpdate(id, {$set: req.body}, (err) =>
+      {
+            if(!err)
+            {
+                  res.status(200).send({message: 'Contato atalizado com sucesso'});
+            }         
+            else {
+                  res.status(500).send({message: 'Erro ao atualizar'});
+            }
+      })
+});
+
+// app.delete para deletar contatos
+
+app.delete('/:id', (req,res) => 
+{
+      const id = req.params.id;
+      category.findByIdAndDelete(id, (err) => 
+      {
+      if(!err){
+            res.status(200).send({message: 'Contato deletado com sucesso'});
+              } 
+      else {
+            res.status(500).send({message: 'Erro ao deletar'});
+            }
+      })
+})
+
 
 
 export default app
