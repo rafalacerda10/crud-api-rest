@@ -8,9 +8,10 @@ import category from "./models/Category.js";
 //db on para verificar se está funcionando
 
 db.on("error", console.log.bind(console, 'Erro de conexão'))
-db.once("open", () => {
-console.log('conexão com o banco feita com sucesso')
-})
+db.once("open", () =>
+      {
+      console.log('conexão com o banco feita com sucesso')
+      })
 
 
 // app.use para utilização do express
@@ -35,7 +36,8 @@ app.get('/', (req, res) =>{
 
 app.post('/', (req, res) =>
 {
-category.create(req.body, (err, category) => {
+category.create(req.body, (err, category) => 
+      {
       res.status(201).json(category);
       })
 });
@@ -74,6 +76,14 @@ app.delete('/:id', (req,res) =>
       })
 })
 
-
+app.get('/:id', function(req, res)
+      {
+      const id = req.params.id;
+            
+      category.findById(id, (err, category) => 
+            {      
+            res.status(200).send(category);                                    
+            })                                  
+      })     
 
 export default app
