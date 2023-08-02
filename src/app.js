@@ -76,10 +76,11 @@ app.delete('/:id', (req,res) =>
       })
 })
 
+// para realizar aaa buscar e mostrar pelo GET
+
 app.get('/:id', function(req, res)
       {
-      const id = req.params.id;
-            
+      const id = req.params.id;        
       category.findById(id, (err, category) => 
             {      
             res.status(200).send(category);                                    
